@@ -5,15 +5,19 @@
 1. [Введение](#intro)  
 1.1 [Назначение](#appointment)  
 1.1 [Бизнес-требования](#business_requirements)  
+
 2. [Требования пользователя](#user_requirements)  
 2.1 [Программные интерфейсы](#program_interfaces)  
 2.2 [Пользовательский интерфейс](#user_interface)
 2.3 [Целевая аудитория](#target_audience)
 2.4 [Зависимости](#dependencies)
+
 3. [Сиситемные требования](#system_requerments)
 3.1 [Функциональные требования](#functional_requerments) 
 3.2 [Нефункциональные требования](#nonfunctional_requerments)
+
 4. [Тестирование](#testing)
+
 5. [Развёртывание](#deployment)
 5.1 [Контейнеризация](#containerization)
 5.2 [Continuous Integration](#ci)
