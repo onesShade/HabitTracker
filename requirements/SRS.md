@@ -44,3 +44,10 @@
 | Frontend | Javascript |
 | Database | PostgresSQL |
 
+<a name="user_interface"/>
+
+## 2.2 Интерфейс пользователя
+
+Окно входа в приложение.  
+
+![Окно входа в приложение](https://github.com/onesShade/HabitTracker/blob/main/mockups/LoginPageMockup.png)  
