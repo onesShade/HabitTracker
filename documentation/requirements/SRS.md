@@ -71,24 +71,24 @@
 
 Окно обновления привычек.  
 
-![Окно обновления привычек](./mockups/IncrementHabitMockup.png)  
+![Окно обновления привычек](../mockups/IncrementHabitMockup.png)  
 
 
 Окно добавления новой привычки.  
 
-![Окно добавления новой привычки](./mockups/AddHabitMockup.png)  
+![Окно добавления новой привычки](../mockups/AddHabitMockup.png)  
 
 Календарь привычек.  
 
-![Календарь привычек](./mockups/CalendarMockup.png)  
+![Календарь привычек](../mockups/CalendarMockup.png)  
 
 Календарь привычек с выбранной привычкой.  
 
-![Календарь привычек с выбранной привычкой](./mockups/SelectedHabitCalendarMockup.png)  
+![Календарь привычек с выбранной привычкой](../mockups/SelectedHabitCalendarMockup.png)  
 
 Профиль пользователя.
 
-![Профиль пользователя](./mockups/ProfileMockup.png)  
+![Профиль пользователя](../mockups/ProfileMockup.png)  
 
 <a name="target_audience"/>
 
