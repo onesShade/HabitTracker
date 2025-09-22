@@ -67,28 +67,28 @@
 
 Окно входа в приложение.  
 
-![Окно входа в приложение](https://github.com/onesShade/HabitTracker/blob/main/mockups/LoginPageMockup.png)  
+![Окно входа в приложение](../mockups/LoginPageMockup.png)  
 
 Окно обновления привычек.  
 
-![Окно обновления привычек](https://github.com/onesShade/HabitTracker/blob/main/mockups/IncrementHabitMockup.png)  
+![Окно обновления привычек](./mockups/IncrementHabitMockup.png)  
 
 
 Окно добавления новой привычки.  
 
-![Окно добавления новой привычки](https://github.com/onesShade/HabitTracker/blob/main/mockups/AddHabitMockup.png)  
+![Окно добавления новой привычки](./mockups/AddHabitMockup.png)  
 
 Календарь привычек.  
 
-![Календарь привычек](https://github.com/onesShade/HabitTracker/blob/main/mockups/CalendarMockup.png)  
+![Календарь привычек](./mockups/CalendarMockup.png)  
 
 Календарь привычек с выбранной привычкой.  
 
-![Календарь привычек с выбранной привычкой](https://github.com/onesShade/HabitTracker/blob/main/mockups/SelectedHabitCalendarMockup.png)  
+![Календарь привычек с выбранной привычкой](./mockups/SelectedHabitCalendarMockup.png)  
 
 Профиль пользователя.
 
-![Профиль пользователя](https://github.com/onesShade/HabitTracker/blob/main/mockups/ProfileMockup.png)  
+![Профиль пользователя](./mockups/ProfileMockup.png)  
 
 <a name="target_audience"/>
 
