@@ -1,4 +1,4 @@
 # Диаграмма развертывания
 
 
-<img src="./images/Deployment.png" width="80%" />
+<img src="./images/Deployment.png" width="60%" />
