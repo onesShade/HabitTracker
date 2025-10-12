@@ -1,4 +1,4 @@
 # Диаграмма компонентов 
 
 
-<img src="./images/component.png" width="100%" />
+<img src="./images/Component.png" width="100%" />
