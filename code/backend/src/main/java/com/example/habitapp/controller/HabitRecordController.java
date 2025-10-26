@@ -1,5 +1,6 @@
 package com.example.habitapp.controller;
 
+import com.example.habitapp.dto.HabitRecordDto;
 import com.example.habitapp.model.HabitRecord;
 import com.example.habitapp.service.HabitRecordService;
 import lombok.RequiredArgsConstructor;
@@ -50,4 +51,32 @@ public class HabitRecordController {
             return habitRecordService.getRecordsByDate(localDate);
         }
     }
+
+    @PostMapping("/month")
+    public List<HabitRecordDto> getRecordsByMonth(@RequestBody Map<String, Object> body) {
+        int year = (int) body.get("year");
+        int month = (int) body.get("month");
+        Long habitId = body.containsKey("habitId") ? ((Number) body.get("habitId")).longValue() : null;
+
+        // Получаем userId из Principal (аутентифицированного пользователя)
+        Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        Long userId;
+
+        if (principal instanceof com.example.habitapp.model.User user) {
+            userId = user.getId();
+        } else {
+            // если principal хранит email (например, при JWT)
+            String userEmail = SecurityContextHolder.getContext().getAuthentication().getName();
+            userId = habitRecordService
+                    .getUserRecords(userEmail)
+                    .stream()
+                    .findFirst()
+                    .map(r -> r.getUser().getId())
+                    .orElseThrow(() -> new RuntimeException("User not found"));
+        }
+
+        return habitRecordService.getRecordsByMonth(userId, year, month, habitId);
+    }
+
+
 }

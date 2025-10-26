@@ -1,0 +1,57 @@
+
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #1976d2;
+  color: white;
+  padding: 12px 32px;
+  font-family: "Segoe UI", sans-serif;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  
+}
+
+body, html {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 100%;
+    overflow-x: hidden;
+}
+
+.navbar-title {
+  font-size: 1.3rem;
+  font-weight: bold;
+}
+
+.navbar-links {
+  display: flex;
+  gap: 20px;
+}
+
+.navbar a {
+  color: white;
+  text-decoration: none;
+  font-weight: 500;
+  transition: opacity 0.2s;
+}
+
+.navbar a:hover {
+  opacity: 0.8;
+  color: rgb(170, 211, 252);
+}
+
+.logout-btn {
+  background-color: white;
+  color: #1976d2;
+  border: none;
+  border-radius: 6px;
+  padding: 6px 12px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: background 0.2s;
+}
+
+.logout-btn:hover {
+  background-color: #e3f2fd;
+}

@@ -35,8 +35,7 @@ public class HabitController {
     public ResponseEntity<Habit> updateHabit(@PathVariable Long id, @RequestBody Habit updated) {
         Long userId = ((User) SecurityContextHolder.getContext().getAuthentication().getPrincipal()).getId();
         updated.setId(id);
-        updated.setId(userId);
-        return ResponseEntity.ok(habitService.updateHabit(updated));
+        return ResponseEntity.ok(habitService.updateHabit(updated, userId));
     }
 
     @DeleteMapping("/{id}")
@@ -52,4 +51,7 @@ public class HabitController {
         habitService.deleteHabit(id);
         return ResponseEntity.noContent().build();
     }
+
+
+
 }

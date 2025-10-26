@@ -2,6 +2,7 @@ package com.example.habitapp.model;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -22,7 +23,7 @@ public class HabitRecord {
 
     @ManyToOne
     @JoinColumn(name = "habit_id", nullable = false)
-    @JsonBackReference
+    @JsonIgnore
     private Habit habit;
 
     @ManyToOne

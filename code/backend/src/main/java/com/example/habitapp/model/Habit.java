@@ -24,12 +24,21 @@ public class Habit {
     @JsonBackReference
     private User user;
 
+    @Column(length = 40)
     private String name;
+
+    @Column(length = 500)
     private String description;
     private boolean isNegative;
     private boolean trackStreak;
     private int currentStreak;
     private LocalDate lastFIPDate;
+
+    @Column(length = 100) // хранит имя иконки, например "FaBeer"
+    private String icon;
+
+    @Column(length = 10)
+    private String color; // хранит цвет в HEX, например "#FF0000"
 
     @OneToMany(mappedBy = "habit", cascade = CascadeType.ALL)
     private List<HabitRecord> records;

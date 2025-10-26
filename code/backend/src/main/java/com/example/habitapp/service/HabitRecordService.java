@@ -1,6 +1,8 @@
 package com.example.habitapp.service;
 
+import com.example.habitapp.dto.HabitRecordDto;
 import com.example.habitapp.exception.NotFoundException;
+import com.example.habitapp.mapper.HabitRecordMapper;
 import com.example.habitapp.model.Habit;
 import com.example.habitapp.model.HabitRecord;
 import com.example.habitapp.model.User;
@@ -23,6 +25,7 @@ public class HabitRecordService {
     private final HabitRepository habitRepository;
     private final UserRepository userRepository;
     private final GoalRepository goalRepository;
+    private final HabitRecordMapper habitRecordMapper;
 
     public HabitRecord createRecord(Long habitId, String note, String userEmail) {
         User user = userRepository.findByEmail(userEmail)
@@ -63,5 +66,15 @@ public class HabitRecordService {
         User user = userRepository.findByEmail(userEmail)
                 .orElseThrow(() -> new NotFoundException("User not found"));
         return habitRecordRepository.findAllByUserId(user.getId());
+    }
+
+    public List<HabitRecordDto> getRecordsByMonth(Long userId, int year, int month, Long habitId) {
+        List<HabitRecord> records = habitRecordRepository.findByUserIdAndMonthAndHabitId(
+                userId, year, month, habitId
+        );
+
+        return records.stream()
+                .map(habitRecordMapper::toDto)
+                .toList();
     }
 }

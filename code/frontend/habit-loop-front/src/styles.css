@@ -1,0 +1,51 @@
+body {
+    font-family: "Segoe UI", Roboto, sans-serif;
+    background-color: #f5f6fa;
+  }
+  
+  
+  /* Центровка окон логина / регистрации */
+  .center-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+  }
+  
+  .auth-box {
+    background: white;
+    padding: 40px;
+    border-radius: 12px;
+    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.1);
+    text-align: center;
+  }
+  
+  .auth-box input {
+    width: 100%;
+    padding: 10px;
+    margin: 10px 0;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+  }
+  
+  .auth-box button {
+    width: 100%;
+    padding: 10px;
+    background: #4fc3f7;
+    border: none;
+    border-radius: 6px;
+    color: black;
+    font-weight: bold;
+    cursor: pointer;
+  }
+  
+  .auth-box button:hover {
+    background: #000000;
+  }
+  
+  .link {
+    color: #4fc3f7;
+    cursor: pointer;
+    text-decoration: underline;
+  }
+  

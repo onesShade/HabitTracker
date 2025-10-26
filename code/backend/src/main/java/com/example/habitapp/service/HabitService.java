@@ -41,7 +41,10 @@ public class HabitService {
         return habitRepository.findAllByUserId(userId);
     }
 
-    public Habit updateHabit(Habit habit) {
+    public Habit updateHabit(Habit habit, Long userId) {
+        User user = userRepository.findById(userId)
+                .orElseThrow(() -> new NotFoundException("Habit not found"));
+        habit.setUser(user);
         return habitRepository.save(habit);
     }
 
