@@ -1,5 +1,6 @@
 package com.example.habitapp.service;
 
+import com.example.habitapp.exception.NotFoundException;
 import com.example.habitapp.model.Habit;
 import com.example.habitapp.model.HabitRecord;
 import com.example.habitapp.model.User;
@@ -22,8 +23,13 @@ public class HabitService {
     private final HabitRepository habitRepository;
     private final HabitRecordRepository habitRecordRepository;
     private final UserRepository userRepository;
+    private final UserService userService;
 
-    public Habit createHabit(Habit habit) {
+    public Habit createHabit(Habit habit, String userEmail) {
+
+        User currentUser = userService.getByEmail(userEmail)
+                .orElseThrow(() -> new NotFoundException("User not found"));
+        habit.setUser(currentUser); // очень важно
         return habitRepository.save(habit);
     }
 
@@ -45,10 +51,10 @@ public class HabitService {
 
     public HabitRecord markHabitRecord(Long habitId, Long userId, LocalDate date, String note) {
         Habit habit = habitRepository.findById(habitId)
-                .orElseThrow(() -> new RuntimeException("Habit not found"));
+                .orElseThrow(() -> new NotFoundException("Habit not found"));
 
         User user = userRepository.findById(userId)
-                .orElseThrow(() -> new RuntimeException("User not found"));
+                .orElseThrow(() -> new NotFoundException("User not found"));
 
         HabitRecord hrecord = new HabitRecord();
         hrecord.setHabit(habit);

@@ -1,28 +1,67 @@
 package com.example.habitapp.service;
 
+import com.example.habitapp.exception.NotFoundException;
+import com.example.habitapp.model.Habit;
 import com.example.habitapp.model.HabitRecord;
+import com.example.habitapp.model.User;
+import com.example.habitapp.repository.GoalRepository;
 import com.example.habitapp.repository.HabitRecordRepository;
+import com.example.habitapp.repository.HabitRepository;
+import com.example.habitapp.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
 import java.util.List;
-import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
 public class HabitRecordService {
 
     private final HabitRecordRepository habitRecordRepository;
+    private final HabitRepository habitRepository;
+    private final UserRepository userRepository;
+    private final GoalRepository goalRepository;
 
-    public List<HabitRecord> getAllByHabit(Long habitId) {
-        return habitRecordRepository.findAllByHabitId(habitId);
+    public HabitRecord createRecord(Long habitId, String note, String userEmail) {
+        User user = userRepository.findByEmail(userEmail)
+                .orElseThrow(() -> new NotFoundException("User not found"));
+        Habit habit = habitRepository.findById(habitId)
+                .orElseThrow(() -> new NotFoundException("Habit not found"));
+
+        HabitRecord record = HabitRecord.builder()
+                .habit(habit)
+                .user(user)
+                .date(LocalDate.now()) // текущая дата
+                .note(note)
+                .build();
+
+        goalRepository.findAllByHabitId(habit.getId()).forEach(goal -> {
+            goal.setProgressValue(goal.getProgressValue() + 1);
+            goalRepository.save(goal);
+        });
+
+        return habitRecordRepository.save(record);
     }
 
-    public Optional<HabitRecord> getRecord(Long id) {
-        return habitRecordRepository.findById(id);
+    public List<HabitRecord> getRecordsByDate(LocalDate date) {
+        return habitRecordRepository.findAll()
+                .stream()
+                .filter(r -> r.getDate().equals(date))
+                .toList();
     }
 
-    public void deleteRecord(Long id) {
-        habitRecordRepository.deleteById(id);
+    public List<HabitRecord> getRecordsByHabitAndDate(Long habitId, LocalDate date) {
+        return habitRecordRepository.findAllByHabitId(habitId)
+                .stream()
+                .filter(r -> r.getDate().equals(date))
+                .toList();
+    }
+
+    public List<HabitRecord> getUserRecords(String userEmail) {
+        User user = userRepository.findByEmail(userEmail)
+                .orElseThrow(() -> new NotFoundException("User not found"));
+        return habitRecordRepository.findAllByUserId(user.getId());
     }
 }
