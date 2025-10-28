@@ -50,12 +50,7 @@ export default function HabitsPage() {
 
   const handleAddNote = async (habitId: number) => {
     const note = notes[habitId] || "";
-    
-    if (!note.trim()) {
-      alert("Please enter a note");
-      return;
-    }
-
+  
     try {
       await createRecord({
         habitId,

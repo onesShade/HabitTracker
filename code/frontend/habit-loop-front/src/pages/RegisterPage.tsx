@@ -25,7 +25,7 @@ export default function Register({ onRegister }: RegisterProps) {
     try {
       const data = await register({ email, password});
       onRegister(data.token);
-      navigate("/dashboard");
+      navigate("dashboard/profile");
     } catch (err: any) {
       setError(err.message || "Registration failed");
     }
@@ -65,7 +65,6 @@ export default function Register({ onRegister }: RegisterProps) {
         </form>
         <div className="auth-footer">
           <Link to="/login">Back to login</Link>
-          <Link to="/demo">View demo</Link>
         </div>
       </div>
     </div>

@@ -19,7 +19,7 @@ export default function Login({ onLogin }: LoginProps) {
     try {
       const data = await login({ email, password });
       onLogin(data.token);
-      navigate("/dashboard");
+      navigate("/dashboard/profile");
     } catch (err: any) {
       setError(err.message || "Login failed");
     }
@@ -51,7 +51,6 @@ export default function Login({ onLogin }: LoginProps) {
         </form>
         <div className="auth-footer">
           <Link to="/register">Create an account</Link>
-          <Link to="/demo">View demo</Link>
         </div>
       </div>
     </div>

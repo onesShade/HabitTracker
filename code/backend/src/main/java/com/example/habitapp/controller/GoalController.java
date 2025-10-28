@@ -1,5 +1,6 @@
 package com.example.habitapp.controller;
 
+import com.example.habitapp.dto.CreateGoalRequest;
 import com.example.habitapp.model.Goal;
 import com.example.habitapp.model.User;
 import com.example.habitapp.security.JwtService;
@@ -31,10 +32,9 @@ public class GoalController {
     // Создать новую цель
     @PostMapping
     public Goal createGoal(@RequestHeader("Authorization") String authHeader,
-                           @RequestParam Long habitId,
-                           @RequestParam int targetValue) {
+                           @RequestBody CreateGoalRequest request) {
         Long userId = ((User) SecurityContextHolder.getContext().getAuthentication().getPrincipal()).getId();
-        return goalService.createGoal(userId, habitId, targetValue);
+        return goalService.createGoal(userId, request.getHabitId(), request.getTargetValue(), request.getDeadline());
     }
 
     // Обновить прогресс

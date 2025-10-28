@@ -90,7 +90,7 @@ export async function getCurrentUser(): Promise<User> {
 
 export async function deleteAccount(): Promise<void> {
   const token = localStorage.getItem("token");
-  const response = await fetch(`${API_BASE}/user`, {
+  const response = await fetch(`${API_BASE}/users/me`, {
     method: "DELETE",
     headers: {
       "Content-Type": "application/json",

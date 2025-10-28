@@ -33,30 +33,30 @@
   }
   
   .calendar-container {
-    max-width: 700px; /* Уменьшено с 900px */
+    max-width: 700px;
     margin: 0 auto;
     background: rgba(255, 255, 255, 0.95);
     backdrop-filter: blur(10px);
     border-radius: 20px;
-    padding: 25px; /* Уменьшено с 30px */
+    padding: 25px;
     box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
     position: relative;
     z-index: 1;
   }
   
   .calendar-header {
-    margin-bottom: 20px; /* Уменьшено с 30px */
+    margin-bottom: 20px;
   }
   
   .calendar-controls {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    gap: 15px; /* Уменьшено с 20px */
+    gap: 15px;
   }
   
   .calendar-title {
-    font-size: 1.8rem; /* Уменьшено с 2rem */
+    font-size: 1.8rem;
     font-weight: 700;
     color: #2d3748;
     margin: 0;
@@ -68,10 +68,10 @@
     background: rgba(102, 126, 234, 0.1);
     border: 2px solid rgba(102, 126, 234, 0.3);
     color: #667eea;
-    padding: 10px 14px; /* Уменьшено */
-    border-radius: 10px; /* Уменьшено с 12px */
+    padding: 10px 14px;
+    border-radius: 10px;
     cursor: pointer;
-    font-size: 1.1rem; /* Уменьшено с 1.2rem */
+    font-size: 1.1rem;
     transition: all 0.3s ease;
     display: flex;
     align-items: center;
@@ -88,12 +88,12 @@
     background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
     color: white;
     border: none;
-    padding: 10px 20px; /* Уменьшено */
-    border-radius: 10px; /* Уменьшено с 12px */
+    padding: 10px 20px;
+    border-radius: 10px;
     cursor: pointer;
     font-weight: 600;
     transition: all 0.3s ease;
-    font-size: 0.9rem; /* Добавлено для уменьшения текста */
+    font-size: 0.9rem;
   }
   
   .today-button:hover {
@@ -104,37 +104,37 @@
   .calendar-grid {
     background: rgba(255, 255, 255, 0.6);
     border-radius: 16px;
-    padding: 15px; /* Уменьшено с 20px */
-    margin-bottom: 25px; /* Уменьшено с 30px */
+    padding: 15px;
+    margin-bottom: 25px;
   }
   
   .weekdays {
     display: grid;
     grid-template-columns: repeat(7, 1fr);
-    gap: 6px; /* Уменьшено с 8px */
-    margin-bottom: 12px; /* Уменьшено с 16px */
+    gap: 6px;
+    margin-bottom: 12px;
   }
   
   .weekday {
     text-align: center;
     font-weight: 600;
     color: #4a5568;
-    padding: 10px; /* Уменьшено с 12px */
-    font-size: 0.85rem; /* Уменьшено с 0.9rem */
+    padding: 10px;
+    font-size: 0.85rem;
   }
   
   .calendar-days {
     display: grid;
     grid-template-columns: repeat(7, 1fr);
-    gap: 6px; /* Уменьшено с 8px */
+    gap: 6px;
   }
   
   .calendar-day {
     aspect-ratio: 1;
     background: rgba(255, 255, 255, 0.8);
     border: 2px solid transparent;
-    border-radius: 10px; /* Уменьшено с 12px */
-    padding: 8px; /* Уменьшено с 8px (оставим для места под цифры) */
+    border-radius: 10px;
+    padding: 8px;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -143,7 +143,7 @@
     transition: all 0.3s ease;
     position: relative;
     overflow: hidden;
-    min-height: 60px; /* Добавим минимальную высоту */
+    min-height: 60px;
   }
   
   .calendar-day:hover {
@@ -157,8 +157,28 @@
     background: rgba(102, 126, 234, 0.1);
   }
   
+  /* Исправленный градиент для completed дней */
   .calendar-day.completed {
-    background: linear-gradient(to top, #48bb78 50%, rgba(255, 255, 255, 0.8) 50%);
+    background: rgba(255, 255, 255, 0.8);
+    position: relative;
+  }
+  
+  .calendar-day.completed::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 50%; /* Только нижняя половина */
+    background: #48bb78;
+    border-radius: 0 0 8px 8px; /* Скругляем только нижние углы */
+    z-index: 0;
+  }
+  
+  /* Убедимся, что контент поверх градиента */
+  .calendar-day.completed > * {
+    position: relative;
+    z-index: 1;
   }
   
   .calendar-day.empty {
@@ -173,51 +193,49 @@
   }
   
   .day-number {
-    font-weight: 700; /* Увеличена жирность */
+    font-weight: 700;
     color: #171d26;
-    font-size: 1.1rem; /* Увеличено с 0.9rem */
+    font-size: 1.4rem;
     align-self: flex-start;
+    z-index: 2;
   }
   
   .day-icons {
     display: flex;
-    gap: 3px;
+    gap: 1px; /* Увеличиваем расстояние между иконками */
     flex-wrap: wrap;
     justify-content: center;
+    align-items: center;
     width: 100%;
-    max-height: 20px;
+    min-height: 30px; /* Увеличиваем минимальную высоту */
+    max-height: 40px; /* Увеличиваем максимальную высоту */
     overflow: hidden;
+    z-index: 2;
+    margin-top: 4px; /* Добавляем отступ сверху */
+    padding: 2px; /* Добавляем внутренние отступы */
   }
-  .day-indicators {
-    position: absolute;
-    bottom: 2px;
-    right: 2px;
-    display: flex;
-    gap: 2px;
-    }
-    
-  .note-indicator-star {
-        position: relative;
-    bottom: 2px;
-    right: 30px;
-    display: flex;
-    gap: 2px;
-    color: #e53e3e;
-    }
-
-  .day-icon {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 1px;
-  flex-shrink: 0;
-}
   
-  .day-status {
+  .day-indicators {
     position: absolute;
     bottom: 4px;
     right: 4px;
+    display: flex;
+    gap: 4px;
+    z-index: 2;
   }
+  
+  .note-indicator {
+    color: #e53e3e;
+    font-weight: 700;
+    font-size: 1rem;
+    text-shadow: 0 1px 2px rgba(255, 255, 255, 0.8);
+  }
+  
+  .day-icon svg {
+    width: 20px !important; 
+    height: 20px !important;
+  }
+  
   
   .record-count {
     background: #667eea;
@@ -230,13 +248,30 @@
     justify-content: center;
     font-size: 0.7rem;
     font-weight: 600;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+    z-index: 2;
   }
   
-  .note-indicator {
-    color: #e53e3e;
-    font-weight: 700;
-    font-size: 1rem;
-    align-items: left;
+  /* Стили для режима конкретной привычки */
+  .calendar-day.specific-habit {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    padding-top: 4px;
+  }
+  
+  .habit-main-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 2px 0;
+    flex-grow: 1;
+    z-index: 2;
+  }
+  
+  .habit-main-icon svg {
+    filter: drop-shadow(0px 1px 2px rgba(0,0,0,0.3));
   }
   
   .calendar-footer {
@@ -244,17 +279,17 @@
     justify-content: space-between;
     align-items: center;
     flex-wrap: wrap;
-    gap: 15px; /* Уменьшено с 20px */
+    gap: 15px;
   }
   
   .habit-select {
-    padding: 10px 14px; /* Уменьшено */
+    padding: 10px 14px;
     border: 2px solid rgba(102, 126, 234, 0.3);
-    border-radius: 10px; /* Уменьшено с 12px */
+    border-radius: 10px;
     background: rgba(255, 255, 255, 0.8);
     color: #2d3748;
-    font-size: 0.9rem; /* Уменьшено с 1rem */
-    min-width: 180px; /* Уменьшено с 200px */
+    font-size: 0.9rem;
+    min-width: 180px;
     cursor: pointer;
     transition: all 0.3s ease;
   }
@@ -267,28 +302,28 @@
   
   .legend {
     display: flex;
-    gap: 15px; /* Уменьшено с 20px */
+    gap: 15px;
     flex-wrap: wrap;
   }
   
   .legend-item {
     display: flex;
     align-items: center;
-    gap: 6px; /* Уменьшено с 8px */
-    font-size: 0.85rem; /* Уменьшено с 0.9rem */
+    gap: 6px;
+    font-size: 0.85rem;
     color: #4a5568;
   }
   
   .legend-dot {
-    width: 10px; /* Уменьшено с 12px */
-    height: 10px; /* Уменьшено с 12px */
+    width: 10px;
+    height: 10px;
     background: #667eea;
     border-radius: 50%;
   }
   
   .legend-half {
-    width: 14px; /* Уменьшено с 16px */
-    height: 14px; /* Уменьшено с 16px */
+    width: 14px;
+    height: 14px;
     background: linear-gradient(to top, #48bb78 50%, transparent 50%);
     border-radius: 4px;
     border: 1px solid #e2e8f0;
@@ -297,30 +332,30 @@
   .calendar-loading {
     grid-column: 1 / -1;
     text-align: center;
-    padding: 30px; /* Уменьшено с 40px */
+    padding: 30px;
     color: #718096;
-    font-size: 1rem; /* Уменьшено с 1.1rem */
+    font-size: 1rem;
   }
   
   /* Responsive design */
   @media (max-width: 768px) {
     .calendar-page {
       padding: 16px;
-      align-items: flex-start; /* Изменено с center для мобильных */
+      align-items: flex-start;
     }
     
     .calendar-container {
       padding: 20px;
-      max-width: 100%; /* На мобильных занимает всю ширину */
+      max-width: 100%;
     }
     
     .calendar-controls {
       flex-wrap: wrap;
-      gap: 10px; /* Уменьшено с 12px */
+      gap: 10px;
     }
     
     .calendar-title {
-      font-size: 1.5rem; /* Уменьшено с 1.5rem */
+      font-size: 1.5rem;
       order: -1;
       flex-basis: 100%;
       text-align: center;
@@ -345,12 +380,12 @@
     }
     
     .calendar-day {
-      padding: 6px; /* Уменьшено с 4px */
-      min-height: 50px; /* Уменьшено для мобильных */
+      padding: 6px;
+      min-height: 50px;
     }
     
     .day-number {
-      font-size: 1rem; /* Уменьшено с 1.1rem для мобильных */
+      font-size: 1rem;
     }
   }
   
@@ -360,7 +395,7 @@
     }
     
     .calendar-grid {
-      padding: 10px; /* Уменьшено с 12px */
+      padding: 10px;
     }
     
     .weekdays, .calendar-days {
@@ -368,26 +403,25 @@
     }
     
     .calendar-title {
-      font-size: 1.3rem; /* Уменьшено с 1.3rem */
+      font-size: 1.3rem;
     }
     
     .nav-button, .today-button {
       padding: 8px 12px;
-      font-size: 0.9rem; /* Уменьшено с 1rem */
+      font-size: 0.9rem;
     }
     
     .calendar-day {
-      min-height: 45px; /* Уменьшено для маленьких экранов */
+      min-height: 45px;
     }
     
     .day-number {
-      font-size: 0.9rem; /* Уменьшено для маленьких экранов */
+      font-size: 0.9rem;
     }
   }
   
-  /* Добавим центрирование для больших экранов */
   @media (min-width: 1200px) {
     .calendar-container {
-      max-width: 650px; /* Еще немного уменьшим на очень больших экранах */
+      max-width: 650px;
     }
   }

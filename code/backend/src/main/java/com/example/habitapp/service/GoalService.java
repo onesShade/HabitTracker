@@ -25,23 +25,24 @@ public class GoalService {
         return goalRepository.findAllByUserId(userId);
     }
 
-    public Goal createGoal(Long userId, Long habitId, int targetValue) {
-         if(userRepository.findById(userId).isEmpty()) {
-             throw new NotFoundException("User not found");
-         }
-
-        User user = userRepository.findById(userId).get();
-
+    public Goal createGoal(Long userId, Long habitId, int targetValue, LocalDate deadline) {
+        User user = userRepository.findById(userId)
+                .orElseThrow(() -> new RuntimeException("User not found"));
 
         Habit habit = habitRepository.findById(habitId)
-                .orElseThrow(() -> new NotFoundException("Habit not found with id " + habitId));
+                .orElseThrow(() -> new RuntimeException("Habit not found"));
+
+        // Если deadline не указан, устанавливаем дефолтный (год от текущей даты)
+        if (deadline == null) {
+            deadline = LocalDate.now().plusYears(1);
+        }
 
         Goal goal = Goal.builder()
                 .user(user)
                 .habit(habit)
                 .targetValue(targetValue)
-                .progressValue(0)
-                .deadline(LocalDate.now().plusYears(1)) // дедлайн через год
+                .progressValue(0) // Начинаем с 0 прогресса
+                .deadline(deadline)
                 .build();
 
         return goalRepository.save(goal);

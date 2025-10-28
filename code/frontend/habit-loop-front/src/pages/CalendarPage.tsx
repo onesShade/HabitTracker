@@ -6,6 +6,8 @@ import type { HabitData } from "../api/habits";
 import "./CalendarPage.css";
 import * as FaIcons from "react-icons/fa";
 
+
+
 export default function CalendarPage() {
   const [currentDate, setCurrentDate] = useState(new Date());
   const [habits, setHabits] = useState<HabitData[]>([]);
