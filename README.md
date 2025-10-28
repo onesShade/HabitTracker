@@ -18,7 +18,7 @@
 ### Prerequisites
 *   Java 17
 *   Maven
-*   PostgreSQL
+*   H2
 
 ### Installation
 1.  Clone the repo: `git clone https://github.com/onesShade/HabitLoop.git`
