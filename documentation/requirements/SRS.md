@@ -59,7 +59,7 @@
 | Backend |Java (Spring Boot) |
 | Build tool | Maven |
 | Frontend | Javascript |
-| Database | PostgresSQL |
+| Database | H2 |
 
 <a name="user_interface"/>
 
